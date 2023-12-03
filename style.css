@@ -38,11 +38,15 @@ body {
 
   .alert{
     position: absolute;
-    top: -100%;
-    background-color: greenyellow;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(172, 255, 47, 0.661);
     padding: 0.5rem;
     border-radius: 20px;
-    transition: all 0.4s ease-in;
+    transition: all 0.9s ease-in;
+    display: none;
+    transform-origin: center center;
   }
   
   .main {

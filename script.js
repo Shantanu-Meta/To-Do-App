@@ -41,7 +41,10 @@ function save() {
 }
 
 function search() {
-  if (input.value == "") return;
+  if (input.value == ""){
+    showAlert("Not found")
+    return;
+  } 
   let searchedNote = input.value; 
   let has = false; 
   let localStorage2 = Array.from(document.querySelectorAll(".note-block"));
@@ -116,6 +119,9 @@ function insertNotes(key, notes){ //key -> number, notes ->str
 }
 
 function scrollDown(){
+
+  if(matchedID.length==0) return; 
+
   if(arrow >= matchedID.length){
     arrow--; 
     showAlert("Not found"); 
@@ -125,6 +131,8 @@ function scrollDown(){
   arrow++; 
 }
 function scrollUp(){
+  if(matchedID.length==0) return; 
+  
   if(arrow < 0){
     arrow++;
     showAlert("Not found"); 
@@ -144,7 +152,7 @@ function sleep(seconds){
 
 const showAlert = async (message) =>{
   alertDiv.textContent = message; 
-  alertDiv.style.top = "0"; 
-  await sleep(3); 
-  alertDiv.style.top = "-100%"; 
+  alertDiv.style.display = "block"; 
+  await sleep(2); 
+  alertDiv.style.display = "none"; 
 }
