@@ -35,10 +35,14 @@ function save() {
   let key = cnt + ""; // str
   let val = input.value; // str
   localStorage.setItem(key, val.toLowerCase());
-  console.log(val);
   insertNotes(cnt, val); 
   input.value = ""; 
   cnt++;
+
+
+  for(let i in Array.from(document.querySelectorAll(".note-block"))){
+    Array.from(document.querySelectorAll(".note-block"))[i].style.background = "transparent"; 
+  }
   
 }
 
