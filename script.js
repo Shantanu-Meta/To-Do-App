@@ -30,7 +30,10 @@ function startPage(){
 
 
 function save() {
-  if (input.value == null) return;
+  if (input.value == ""){
+    showAlert("Insert Note");
+    return;
+  }
 
   let key = cnt + ""; // str
   let val = input.value; // str
