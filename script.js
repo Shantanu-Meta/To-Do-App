@@ -34,10 +34,12 @@ function save() {
 
   let key = cnt + ""; // str
   let val = input.value; // str
-  localStorage.setItem(key, val);
+  localStorage.setItem(key, val.toLowerCase());
+  console.log(val);
   insertNotes(cnt, val); 
   input.value = ""; 
   cnt++;
+  
 }
 
 function search() {
@@ -45,13 +47,13 @@ function search() {
     showAlert("Not found")
     return;
   } 
-  let searchedNote = input.value; 
+  let searchedNote = input.value.toLowerCase(); 
   let has = false; 
   let localStorage2 = Array.from(document.querySelectorAll(".note-block"));
   matchedID.length = 0; 
 
   for (let i in localStorage2) {
-    if(localStorage2[i].value.includes(searchedNote)){
+    if(localStorage2[i].value.toLowerCase().includes(searchedNote)){
       localStorage2[i].style.background = "rgba(0,0,0,0.8)"; 
       let key = localStorage2[i].closest(".notes").getAttribute("id"); 
       matchedID.push(key); 
@@ -89,7 +91,7 @@ function doEdit(id){
     notes.focus();  
     button.textContent = "Save"
   }else{
-    localStorage.setItem(id,val);
+    localStorage.setItem(id,val.toLowerCase());
     notes.setAttribute("readonly","1"); 
     notes.style.background = "transparent"; 
     button.textContent ="Edit";
@@ -123,23 +125,23 @@ function scrollDown(){
   if(matchedID.length==0) return; 
 
   if(arrow >= matchedID.length){
-    arrow--; 
     showAlert("Not found"); 
     return ; 
   }
   downArrow.setAttribute("href", "#"+matchedID[arrow]); 
   arrow++; 
+
 }
 function scrollUp(){
   if(matchedID.length==0) return; 
   
-  if(arrow < 0){
-    arrow++;
+  if(arrow <= 0){
     showAlert("Not found"); 
     return ; 
   }
   arrow--; 
   upArrow.setAttribute("href", "#"+matchedID[arrow]); 
+
 }
 
 function sleep(seconds){
